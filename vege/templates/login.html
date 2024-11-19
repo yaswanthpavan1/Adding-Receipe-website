@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% block start %}
+
+<div class="container mt-5">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="post">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <hr>
+        
+        {% if messages %}
+            <div class="alert alert-info" role="alert">  <!-- Changed alert class for better visibility -->
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" name="username" id="username" required aria-describedby="usernameHelp">
+            <div id="usernameHelp" class="form-text">We'll never share your username with anyone else.</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="password" required>
+        </div>
+        
+        <p> Don't have an account? <a href="{% url 'register' %}">Register</a> </p>
+        
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+{% endblock %}
